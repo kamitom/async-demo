@@ -260,6 +260,21 @@ const getCountryDataAndNeighbour = function (country) {
 
 btn.addEventListener('click', function () {
   const countryValue = txtCountry.value;
-  // getCountryData('portugal');
   getCountryDataAndNeighbour(countryValue);
 });
+
+// 這裡是簡單的promise
+const getCountryByAPI = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => {
+      renderCountryDetails(data[0]);
+      const [neighbour] = data[0].borders;
+      if (!neighbour) return;
+      // get neighbour country
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then((response) => response.json())
+    .then((data) => renderCountryDetails(data[0], 'neighbour'));
+};
+getCountryByAPI('italy');
