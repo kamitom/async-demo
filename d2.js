@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 console.log('test promise object');
 
@@ -31,23 +31,44 @@ my_promise
 
 function timeOutFunc(ms) {
   return new Promise((resolve, reject) => {
-    const runningResult = 9;
+    const runningResult = 1;
     if (runningResult === 1) {
-      resolve('promise 回傳成功');
+      const obj1 = {
+        a: 100,
+        b: 2,
+        c: 300,
+      };
+      // resolve('promise 回傳成功');
+      resolve(obj1);
     } else {
-      reject('promise 回傳失败');
+      reject(new Error('promise 回傳失败'));
     }
     setTimeout(resolve, ms, 'done!!');
   });
 }
 
-timeOutFunc(3000)
+timeOutFunc(5000)
   .then((value) => {
+    value.d = 4;
     console.log(value);
   })
   .catch((err) => {
-    console.log(err);
+    console.log(`oh!${err}`);
   })
   .finally(() => {
     console.log('finally');
   });
+
+/*
+const someAsyncFunc = () => {
+  return new Promise((resolve, reject) => {
+    const x = 1;
+    resolve(x + 2);
+  });
+};
+
+someAsyncFunc().then((result) => {
+  console.log('everything is great.');
+});
+*/
+console.log('這裡是同步任務: finally.');

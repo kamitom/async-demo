@@ -1,0 +1,2 @@
+this is test2.txt
+Content, 中文？會顯示嗎？
