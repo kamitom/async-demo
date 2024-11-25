@@ -1,4 +1,7 @@
-console.log('hello, async');
+import * as d4Module from './d4.js';
+
+// console.log('hello, async');
+console.log(d4Module.qq);
 
 // async function getTitle(url) {
 //   let response = await fetch(url);
@@ -18,3 +21,13 @@ async function f1() {
 f1()
   .then((v) => console.log(v))
   .catch((e) => console.log(e)); // 出錯勒。颱風來勒
+
+console.log(d4Module.q1);
+
+d4Module.fn1();
+
+const newObj1 = d4Module.obj1;
+newObj1.name = 'MAC RAE';
+
+newObj1.displayName();
+console.log(newObj1.toString());
